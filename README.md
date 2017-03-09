@@ -1,3 +1,17 @@
+# Guide für Beispiel
+https://scotch.io/tutorials/mean-app-with-angular-2-and-the-angular-cli
+
+# MEAN Framework MongoDB, Express, Angular 2, NodeJS
+http://mean.io/
+
+## Express 
+NodeJS Framework für Rest-Apis und Websocket
+http://expressjs.com/de/
+
+## Angular 2
+https://angular.io/
+
+
 # TestProjekt
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.

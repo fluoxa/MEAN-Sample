@@ -35,9 +35,39 @@ router.get('/:id', (req, res) => {
   res.status(200).json(thread);
 });
 
-router.post('/addto/:id', (req, res) => {
+router.get('/:id/count', (req, res) => {
 
-  let newPost = {
+  //todo: returns number of posts associated to thread
+  res.status(200).json({"count" : 3});
+});
+
+
+router.get('/list', (req, res) => {
+
+  let threads = [{
+    threadId: 1,
+    authorId: 12,
+    title: 'Schmeckt Salat?',
+    content: 'Will wissen, ob Grünzeug lecker ist?',
+    publishingDate: moment(),
+  },
+    {
+      threadId: 2,
+      authorId: 12,
+      title: 'Wohin mit meinen büchern?',
+      content: 'Habe zu viele bücher... verbrennen ist zu schade. was tunẞ',
+      publishingDate: moment().add(7, 'days')
+    }];
+
+  //todo: load from db
+
+  res.status(200).json(threads);
+});
+
+
+router.put('/:id/post', (req, res) => {
+
+  let post = {
     threadId: req.params.id,
     userId: req.body.userId,
     title: req.body.title,
@@ -45,19 +75,19 @@ router.post('/addto/:id', (req, res) => {
     publishingDate: req.body.publishingDate
   };
 
-  //todo: set id by db and update thread
+  //todo: update in db
 
   res.status(200).send(null);
 });
+
 
 router.put('/', (req, res) => {
 
   let newThread = {
     userId: req.body.userId,
     title: req.body.title,
-    content: req.body.content,
-    publishingDate: req.body.publishingDate,
-    posts : []
+    content: req.body.threadContent,
+    publishingDate: req.body.publishingDate
   };
 
   //todo: set threadId by db and create thread

@@ -27,6 +27,6 @@ app.get('*', (req, res) => {
 
 /** Create HTTP server. **/
 const server = http.createServer(app);
-let port = 3000;
+const port = 3000;
 
 server.listen(port, () => console.log(`API running on localhost:${port}`));

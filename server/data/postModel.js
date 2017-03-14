@@ -1,12 +1,13 @@
 let mongoose = require('mongoose');
-//let appConfig = require('../../config/appConfig');
-//let urlHelper = require('../helper/urlHelper');
-//
-//let dbConfig = appConfig.db;
-//let connectionString = urlHelper.getUrl('mongodb', dbConfig.host, dbConfig.port, dbConfig.name);
-//
-//mongoose.connect(connectionString);
+let ObjectId = mongoose.Schema.ObjectId;
 
-let postSchema = mongoose.Schema({
-  name: String
+let postSchema = new mongoose.Schema({
+  _id: {type: ObjectId, auto : true},
+  threadId: {type: String, required : true},
+  userId: {type: String, required : true},
+  title: String,
+  content: String,
+  publishingDate: Date
 });
+
+module.exports = mongoose.model('Post', postSchema);

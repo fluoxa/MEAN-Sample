@@ -8,7 +8,7 @@ router.get('/:id', (req, res) => {
   let post1 = {
     id: 17,
     threadId: 3,
-    authorId: 12,
+    userId: 12,
     title: 'blöder kommentar',
     content: 'spinat schmeckt kacke...',
     publishingDate: moment()
@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
   let post2 = {
     id: 125,
     threadId: 3,
-    authorId: 2,
+    userId: 2,
     title: 'cleverer kommentar',
     content: 'rucola schmeckt lecker...',
     publishingDate: moment().add(7, 'days')
@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
 
   let thread = {
     id: req.params.id,
-    authorId: 12,
+    userId: 12,
     title: 'blöder kommentar',
     content: 'spinat schmeckt kacke...',
     publishingDate: moment(),
@@ -39,7 +39,7 @@ router.post('/addto/:id', (req, res) => {
 
   let newPost = {
     threadId: req.params.id,
-    authorId: req.body.authorId,
+    userId: req.body.userId,
     title: req.body.title,
     content: req.body.content,
     publishingDate: req.body.publishingDate
@@ -53,9 +53,9 @@ router.post('/addto/:id', (req, res) => {
 router.put('/', (req, res) => {
 
   let newThread = {
-    authorId: req.body.authorId,
+    userId: req.body.userId,
     title: req.body.title,
-    content: req.body.threadContent,
+    content: req.body.content,
     publishingDate: req.body.publishingDate,
     posts : []
   };

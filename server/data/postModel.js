@@ -1,13 +1,13 @@
+const autoIncrement = require('mongoose-auto-increment');
 let mongoose = require('mongoose');
-let ObjectId = mongoose.Schema.ObjectId;
 
 let postSchema = new mongoose.Schema({
-  _id: {type: ObjectId, auto : true},
-  threadId: {type: String, required : true},
-  userId: {type: String, required : true},
+  threadId: {type: Number, required : true},
+  userId: {type: Number, required : true},
   title: String,
   content: String,
   publishingDate: Date
 });
 
-module.exports = mongoose.model('Post', postSchema);
+postSchema.plugin(autoIncrement.plugin, 'Post');
+module.exports = mongoose.connection.model('Post', postSchema);

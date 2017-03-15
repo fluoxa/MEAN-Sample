@@ -23,21 +23,6 @@ router.get('/:id', (req, res) => {
   res.status(200).json(post);
 });
 
-
-let appConfig = require('../../../config/appConfig');
-let urlHelper = require('../../helper/urlHelper');
-
-let mongoose = require('mongoose');
-let promiseLib = require('bluebird');
-
-mongoose.Promise = promiseLib;
-
-let dbConfig = appConfig.db;
-let connectionString = urlHelper.getUrl('mongodb', dbConfig.host, dbConfig.port, dbConfig.name);
-
-mongoose.connect(connectionString);
-
-
 router.put('/', (req, res) => {
 
   let post = new Post({

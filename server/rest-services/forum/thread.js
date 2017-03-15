@@ -86,7 +86,7 @@ router.put('/', (req, res) => {
   let newThread = {
     userId: req.body.userId,
     title: req.body.title,
-    content: req.body.threadContent,
+    content: req.body.content,
     publishingDate: req.body.publishingDate
   };
 

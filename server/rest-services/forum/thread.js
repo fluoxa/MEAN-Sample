@@ -90,7 +90,6 @@ router.put('/:id/post', (req, res) => {
     });
 });
 
-
 router.put('/', (req, res) => {
 
   let newThread = {

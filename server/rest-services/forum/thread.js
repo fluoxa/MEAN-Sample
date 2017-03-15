@@ -2,6 +2,8 @@ const express = require('express');
 const moment = require('moment');
 const router = express.Router();
 
+const Post = require('../../data/postModel');
+
 router.get('/:id', (req, res) => {
 
   //todo: load from db
@@ -67,17 +69,25 @@ router.get('/list', (req, res) => {
 
 router.put('/:id/post', (req, res) => {
 
-  let post = {
+  if(req.get('content-type') !== 'application/json'){
+    res.status(400).send(null);
+    return;
+  }
+
+  let post = new Post({
     threadId: req.params.id,
     userId: req.body.userId,
     title: req.body.title,
     content: req.body.content,
     publishingDate: req.body.publishingDate
-  };
+  });
 
-  //todo: update in db
-
-  res.status(200).send(null);
+  post.save()
+    .then(() => res.status(200).send(null))
+    .catch(error => {
+      console.error('Error while saving postModel: ' + error);
+      res.status(400).send(null);
+    });
 });
 
 

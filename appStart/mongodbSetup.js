@@ -1,11 +1,11 @@
-let appConfig = require('../config/appConfig');
-let urlHelper = require('../server/helper/urlHelper');
-
 let mongoose = require('mongoose');
 let autoIncrement = require('mongoose-auto-increment');
 
 module.exports = {
   setupMongoose : function() {
+
+    const appConfig = require('../config/appConfig');
+    const urlHelper = require('../server/helper/urlHelper');
 
     mongoose.Promise = require('bluebird');
 

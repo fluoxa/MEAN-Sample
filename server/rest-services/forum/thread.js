@@ -2,13 +2,15 @@ const express = require('express');
 const moment = require('moment');
 const router = express.Router();
 
+const Post = require('../../data/postModel');
+
 router.get('/:id', (req, res) => {
 
   //todo: load from db
   let post1 = {
     id: 17,
     threadId: 3,
-    authorId: 12,
+    userId: 12,
     title: 'blöder kommentar',
     content: 'spinat schmeckt kacke...',
     publishingDate: moment()
@@ -17,7 +19,7 @@ router.get('/:id', (req, res) => {
   let post2 = {
     id: 125,
     threadId: 3,
-    authorId: 2,
+    userId: 2,
     title: 'cleverer kommentar',
     content: 'rucola schmeckt lecker...',
     publishingDate: moment().add(7, 'days')
@@ -25,7 +27,7 @@ router.get('/:id', (req, res) => {
 
   let thread = {
     id: req.params.id,
-    authorId: 12,
+    userId: 12,
     title: 'blöder kommentar',
     content: 'spinat schmeckt kacke...',
     publishingDate: moment(),
@@ -67,26 +69,33 @@ router.get('/list', (req, res) => {
 
 router.put('/:id/post', (req, res) => {
 
-  let post = {
+  if(req.get('content-type') !== 'application/json'){
+    res.status(400).send(null);
+    return;
+  }
+
+  let post = new Post({
     threadId: req.params.id,
-    authorId: req.body.authorId,
+    userId: req.body.userId,
     title: req.body.title,
     content: req.body.content,
     publishingDate: req.body.publishingDate
-  };
+  });
 
-  //todo: update in db
-
-  res.status(200).send(null);
+  post.save()
+    .then(() => res.status(200).send(null))
+    .catch(error => {
+      console.error('Error while saving postModel: ' + error);
+      res.status(400).send(null);
+    });
 });
-
 
 router.put('/', (req, res) => {
 
   let newThread = {
-    authorId: req.body.authorId,
+    userId: req.body.userId,
     title: req.body.title,
-    content: req.body.threadContent,
+    content: req.body.content,
     publishingDate: req.body.publishingDate
   };
 

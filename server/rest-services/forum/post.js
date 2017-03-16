@@ -12,7 +12,7 @@ router.get('/:id', (req, res) => {
   let post = {
     id: req.params.id,
     threadId: 3,
-    authorId: 12,
+    userId: 12,
     title: 'blöder kommentar',
     content: 'spinat schmeckt kacke...',
     publishingDate: moment()
